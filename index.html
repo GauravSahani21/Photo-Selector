@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Photo Selector</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Wedding Photo Selector</h1>
+        <div class="controls">
+          <label for="folder-input" class="btn">
+            <i class="fas fa-folder-open"></i> Load Photos
+            <input
+              type="file"
+              id="folder-input"
+              webkitdirectory
+              directory
+              multiple
+              hidden
+            />
+          </label>
+          <button id="export-btn" class="btn" disabled>
+            <i class="fas fa-download"></i> Export Selected
+          </button>
+          <button id="save-progress-btn" class="btn" disabled>
+            <i class="fas fa-save"></i> Save Progress
+          </button>
+          <button id="load-progress-btn" class="btn">
+            <i class="fas fa-upload"></i> Load Progress
+          </button>
+        </div>
+      </header>
+
+      <div class="main-content">
+        <div class="event-stats">
+          <h3>Event Statistics</h3>
+          <div class="event-stat-container">
+            <div class="event-stat">
+              <span id="mehendi-count">0</span>
+              <span>Mehendi</span>
+            </div>
+            <div class="event-stat">
+              <span id="haldi-count">0</span>
+              <span>Haldi</span>
+            </div>
+            <div class="event-stat">
+              <span id="cocktail-count">0</span>
+              <span>Cocktail</span>
+            </div>
+            <div class="event-stat">
+              <span id="myra-count">0</span>
+              <span>Myra</span>
+            </div>
+            <div class="event-stat">
+              <span id="marriage-count">0</span>
+              <span>Marriage</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-wrapper">
+          <div class="stats">
+            <div class="stat">
+              <span id="total-count">0</span>
+              <span>Total</span>
+            </div>
+            <div class="stat">
+              <span id="accepted-count">0</span>
+              <span>Accepted</span>
+            </div>
+            <div class="stat">
+              <span id="rejected-count">0</span>
+              <span>Rejected</span>
+            </div>
+            <div class="stat">
+              <span id="hold-count">0</span>
+              <span>On Hold</span>
+            </div>
+          </div>
+
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="main">Main</button>
+            <button class="tab-btn" data-tab="accepted">Accepted</button>
+            <button class="tab-btn" data-tab="hold">On Hold</button>
+          </div>
+
+          <div class="tab-content active" id="main-tab">
+            <div class="photo-container">
+              <div id="no-photos-message" class="message">
+                <i class="fas fa-images"></i>
+                <p>Load photos to get started</p>
+              </div>
+              <div id="photo-card" class="hidden">
+                <div class="navigation-hint">
+                  <p>
+                    <i class="fas fa-keyboard"></i> Use left/right arrow keys to
+                    navigate
+                  </p>
+                </div>
+                <img id="current-photo" src="" alt="Wedding photo" />
+                <div class="filename" id="current-filename"></div>
+                <div class="photo-actions-container">
+                  <div class="actions">
+                    <button id="reject-btn" class="action-btn reject">
+                      <i class="fas fa-times"></i>
+                    </button>
+                    <button id="hold-btn" class="action-btn hold">
+                      <i class="fas fa-pause"></i>
+                    </button>
+                    <button id="accept-btn" class="action-btn accept">
+                      <i class="fas fa-heart"></i>
+                    </button>
+                  </div>
+                  <div class="event-tags">
+                    <h4>Event Tag (Required for Accepted Photos)</h4>
+                    <div class="tag-options">
+                      <button class="tag-btn" data-event="mehendi">
+                        Mehendi
+                      </button>
+                      <button class="tag-btn" data-event="haldi">Haldi</button>
+                      <button class="tag-btn" data-event="cocktail">
+                        Cocktail
+                      </button>
+                      <button class="tag-btn" data-event="myra">Myra</button>
+                      <button class="tag-btn" data-event="marriage">
+                        Marriage
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="accepted-tab">
+            <div class="filter-controls">
+              <span>Filter by event: </span>
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="mehendi">Mehendi</button>
+              <button class="filter-btn" data-filter="haldi">Haldi</button>
+              <button class="filter-btn" data-filter="cocktail">
+                Cocktail
+              </button>
+              <button class="filter-btn" data-filter="myra">Myra</button>
+              <button class="filter-btn" data-filter="marriage">
+                Marriage
+              </button>
+            </div>
+            <div id="accepted-photos" class="gallery"></div>
+            <div id="no-accepted-message" class="message">
+              <i class="fas fa-heart-broken"></i>
+              <p>No accepted photos yet</p>
+            </div>
+          </div>
+
+          <div class="tab-content" id="hold-tab">
+            <div id="hold-photos" class="gallery"></div>
+            <div id="no-hold-message" class="message">
+              <i class="fas fa-pause-circle"></i>
+              <p>No photos on hold</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
